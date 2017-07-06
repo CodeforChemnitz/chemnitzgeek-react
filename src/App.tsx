@@ -1,9 +1,15 @@
 import * as React from 'react';
 import './style/App.css';
+import Input from './Input';
+import Table from './Table';
 
 const logo = require('./style/logo.svg');
 
-class App extends React.Component<{}, {}> {
+interface P {}
+
+interface S {}
+
+class App extends React.Component<P, S> {
   render() {
     return (
       <div className="App">
