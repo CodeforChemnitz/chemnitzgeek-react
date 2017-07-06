@@ -1,12 +1,32 @@
 import * as React from 'react';
-import TableRow from './TableRow';
+import TableRow, {Game} from './TableRow';
 
-interface P {}
+export default function Table(props: TableProps) {
+  const rowList = props.games.map((game, index) => (
+    <TableRow
+      key={index}
+      game={game}
+    />
+  ));
 
-class Table extends React.Component<P, {}> {
-  render() {
-    return <p/>;
-  }
+  return (
+    <div>
+      <table>
+        <thead>
+          <td>Name</td>
+          <td>Rating</td>
+          <td>Players</td>
+          <td>Age</td>
+          <td>Weight</td>
+          <td>Year</td>
+          <td>Source</td>
+        </thead>
+        <tbody>{rowList}</tbody>
+      </table>
+    </div>
+  );
 }
 
-export default Table;
+interface TableProps {
+  games: Game[];
+}
