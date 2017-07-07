@@ -44,7 +44,6 @@ export default function Form(props: InputProps) {
               type="checkbox"
               checked={props.spieleNacht2016}
               onChange={props.onSpieleNacht2016Change}
-              name="sources"
             />
             Spielenacht 2016
           </label>
@@ -53,7 +52,6 @@ export default function Form(props: InputProps) {
               type="checkbox"
               checked={props.stadtBibliothek}
               onChange={props.onStadtBibliothekChange}
-              name="sources"
             />
             Stadtbibliothek
           </label>
@@ -62,7 +60,6 @@ export default function Form(props: InputProps) {
               type="checkbox"
               checked={props.wuerfelTuermer}
               onChange={props.onWuerfelTuermerChange}
-              name="sources"
             />
             Würfeltürmer
             </label>
@@ -71,7 +68,6 @@ export default function Form(props: InputProps) {
               type="checkbox"
               checked={props.kaffeeSatz}
               onChange={props.onKaffeeSatzChange}
-              name="sources"
             />
             Kaffeesatz
           </label>
