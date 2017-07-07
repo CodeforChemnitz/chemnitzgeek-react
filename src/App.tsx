@@ -69,14 +69,28 @@ export default class App extends React.Component<AppProps, AppState> {
     });
   }
 
-  handleRatingChange() {
-    this.setState({
-    });
+  handleRatingChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.name === 'max') {
+      this.setState({
+        rating: [this.state.rating[0], Number(event.target.value)]
+      });
+    } else {
+      this.setState({
+        rating: [Number(event.target.value), this.state.rating[1]]
+      });
+    }
   }
 
-  handleWeightChange() {
-    this.setState({
-    });
+  handleWeightChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.name === 'max') {
+      this.setState({
+        weight: [this.state.weight[0], Number(event.target.value)]
+      });
+    } else {
+      this.setState({
+        weight: [Number(event.target.value), this.state.weight[1]]
+      });
+    }
   }
 
   handleMaxAgeChange(event: React.ChangeEvent<HTMLInputElement>) {

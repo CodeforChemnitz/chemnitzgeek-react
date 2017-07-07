@@ -77,8 +77,8 @@ interface InputProps {
   kaffeeSatz?: boolean;
   onSearchTermChange: React.ChangeEventHandler<HTMLInputElement>;
   onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
-  onRatingChange: React.ChangeEventHandler<{}>;
-  onWeightChange: React.ChangeEventHandler<{}>;
+  onRatingChange: React.ChangeEventHandler<HTMLInputElement>;
+  onWeightChange: React.ChangeEventHandler<HTMLInputElement>;
   onMaxAgeChange: React.ChangeEventHandler<HTMLInputElement>;
   onSpieleNacht2016Change: React.ChangeEventHandler<HTMLInputElement>;
   onStadtBibliothekChange: React.ChangeEventHandler<HTMLInputElement>;

@@ -4,17 +4,19 @@ export default function RangeInput(props: RangeInputProps) {
   return(
     <div>
       <input
+        name="min"
         type="number"
         min={props.min}
-        max={props.max}
+        max={props.value[1]}
         value={props.value[0]}
         step={props.step}
         disabled={props.disabled}
         onChange={props.onChange}
       />
       <input
+        name="max"
         type="number"
-        min={props.min}
+        min={props.value[0]}
         max={props.max}
         value={props.value[1]}
         step={props.step}
