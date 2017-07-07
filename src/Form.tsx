@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RangeInput from './RangeInput';
 import CheckBoxGroup from './CheckBoxGroup';
-import {Item} from './CheckBox';
+import {FormState} from './App';
 
 export default function Form(props: InputProps) {
   return (
@@ -61,13 +61,7 @@ export default function Form(props: InputProps) {
   );
 }
 
-interface InputProps {
-  searchTerm: string;
-  playerCount: number;
-  rating: [number, number];
-  weight: [number, number];
-  maxAge: number;
-  sources: Item[];
+interface InputProps extends FormState {
   onSearchTermChange: React.ChangeEventHandler<HTMLInputElement>;
   onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
   onRatingChange: React.ChangeEventHandler<HTMLInputElement>;

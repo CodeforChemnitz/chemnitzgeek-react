@@ -1,32 +1,45 @@
 import * as React from 'react';
-import TableRow, {Game} from './TableRow';
+import TableRow from './TableRow';
+import {AppState} from './App';
 
-export default function Table(props: TableProps) {
-  const rowList = props.games.map((game, index) => (
-    <TableRow
-      key={index}
-      game={game}
-    />
-  ));
+export default class Table extends React.Component<TableProps, TableState> {
+  constructor(props: TableProps) {
+    super(props);
+    this.state = {
 
-  return (
-    <div className="col-sm-9">
-      <table className="scrollable striped">
-        <thead>
-          <th>Name</th>
-          <th>Rating</th>
-          <th>Players</th>
-          <th>Age</th>
-          <th>Weight</th>
-          <th>Year</th>
-          <th>Source</th>
-        </thead>
-        <tbody>{rowList}</tbody>
-      </table>
-    </div>
-  );
+    };
+  }
+
+  render() {
+    const rowList = this.props.games.map((game, index) => (
+      <TableRow
+        key={index}
+        game={game}
+      />
+    ));
+
+    return (
+      <div className="col-sm-9">
+        <table className="scrollable striped">
+          <thead>
+            <th>Name</th>
+            <th>Bewertung</th>
+            <th>Spieleranzahl</th>
+            <th>Alter</th>
+            <th>Gewicht</th>
+            <th>Jahr</th>
+            <th>Quelle</th>
+          </thead>
+          <tbody>{rowList}</tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
-interface TableProps {
-  games: Game[];
+interface TableProps extends AppState {
+}
+
+interface TableState {
+
 }

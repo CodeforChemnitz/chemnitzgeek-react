@@ -47,7 +47,7 @@ export default class App extends React.Component<AppProps, AppState> {
           onMaxAgeChange={this.handleMaxAgeChange}
           onSourcesChange={this.handleSourcesChange}
         />
-        <Table games={this.state.games}/>
+        <Table {...this.state}/>
       </div>
     );
   }
@@ -107,8 +107,11 @@ export default class App extends React.Component<AppProps, AppState> {
 
 interface AppProps {}
 
-interface AppState {
+export interface AppState extends FormState {
   games: Game[];
+}
+
+export interface FormState {
   searchTerm: string;
   playerCount: number;
   rating: [number, number];
