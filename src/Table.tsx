@@ -11,15 +11,15 @@ export default function Table(props: TableProps) {
 
   return (
     <div className="col-sm-9">
-      <table>
+      <table className="scrollable striped">
         <thead>
-          <td>Name</td>
-          <td>Rating</td>
-          <td>Players</td>
-          <td>Age</td>
-          <td>Weight</td>
-          <td>Year</td>
-          <td>Source</td>
+          <th>Name</th>
+          <th>Rating</th>
+          <th>Players</th>
+          <th>Age</th>
+          <th>Weight</th>
+          <th>Year</th>
+          <th>Source</th>
         </thead>
         <tbody>{rowList}</tbody>
       </table>
