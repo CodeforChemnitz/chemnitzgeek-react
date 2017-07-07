@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Form from './Form';
 import Table from './Table';
+import {Item} from './CheckBox';
 import {Game} from './TableRow';
 
 export default class App extends React.Component<AppProps, AppState> {
@@ -13,20 +14,20 @@ export default class App extends React.Component<AppProps, AppState> {
       rating: [1, 10],
       weight: [1, 5],
       maxAge: 99,
-      spieleNacht2016: true,
-      stadtBibliothek: true,
-      wuerfelTuermer: true,
-      kaffeeSatz: true,
+      sources: [
+        'Spielenacht 2016',
+        'Stadtbibliothek',
+        'Studentenwerk',
+        'Würfeltürmer',
+        'Kaffeesatz',
+      ].map((item, index) => ({id: index, name: item, checked: true})),
     };
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
     this.handlePlayerCountChange = this.handlePlayerCountChange.bind(this);
     this.handleRatingChange = this.handleRatingChange.bind(this);
     this.handleWeightChange = this.handleWeightChange.bind(this);
     this.handleMaxAgeChange = this.handleMaxAgeChange.bind(this);
-    this.handleSpieleNacht2016Change = this.handleSpieleNacht2016Change.bind(this);
-    this.handleStadtBibliothekChange = this.handleStadtBibliothekChange.bind(this);
-    this.handleWuerfelTuermerChange = this.handleWuerfelTuermerChange.bind(this);
-    this.handleKaffeeSatzChange = this.handleKaffeeSatzChange.bind(this);
+    this.handleSourcesChange = this.handleSourcesChange.bind(this);
   }
 
   render() {
@@ -38,19 +39,13 @@ export default class App extends React.Component<AppProps, AppState> {
           rating={this.state.rating}
           weight={this.state.weight}
           maxAge={this.state.maxAge}
-          spieleNacht2016={this.state.spieleNacht2016}
-          stadtBibliothek={this.state.stadtBibliothek}
-          wuerfelTuermer={this.state.wuerfelTuermer}
-          kaffeeSatz={this.state.kaffeeSatz}
+          sources={this.state.sources}
           onSearchTermChange={this.handleSearchTermChange}
           onPlayerCountChange={this.handlePlayerCountChange}
           onRatingChange={this.handleRatingChange}
           onWeightChange={this.handleWeightChange}
           onMaxAgeChange={this.handleMaxAgeChange}
-          onSpieleNacht2016Change={this.handleSpieleNacht2016Change}
-          onStadtBibliothekChange={this.handleStadtBibliothekChange}
-          onWuerfelTuermerChange={this.handleWuerfelTuermerChange}
-          onKaffeeSatzChange={this.handleKaffeeSatzChange}
+          onSourcesChange={this.handleSourcesChange}
         />
         <Table games={this.state.games}/>
       </div>
@@ -99,27 +94,13 @@ export default class App extends React.Component<AppProps, AppState> {
     });
   }
 
-  handleSpieleNacht2016Change(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      spieleNacht2016: Boolean(event.target.checked),
-    });
-  }
+  handleSourcesChange(sourceId: number) {
+    this.setState((prevState) => {
+      const i = prevState.sources.findIndex((item) => item.id === sourceId);
+      const sources = prevState.sources.slice();
+      sources[i].checked = !sources[i].checked;
 
-  handleStadtBibliothekChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      stadtBibliothek: Boolean(event.target.checked),
-    });
-  }
-
-  handleWuerfelTuermerChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      wuerfelTuermer: Boolean(event.target.checked),
-    });
-  }
-
-  handleKaffeeSatzChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      kaffeeSatz: Boolean(event.target.checked),
+      return {sources: sources};
     });
   }
 }
@@ -133,8 +114,5 @@ interface AppState {
   rating: [number, number];
   weight: [number, number];
   maxAge: number;
-  spieleNacht2016: boolean;
-  stadtBibliothek: boolean;
-  wuerfelTuermer: boolean;
-  kaffeeSatz: boolean;
+  sources: Item[];
 }

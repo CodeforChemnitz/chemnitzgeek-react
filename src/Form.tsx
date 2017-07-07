@@ -1,22 +1,29 @@
 import * as React from 'react';
 import RangeInput from './RangeInput';
+import CheckBoxGroup from './CheckBoxGroup';
+import {Item} from './CheckBox';
 
 export default function Form(props: InputProps) {
   return (
     <div className="col-sm-3">
       <form>
-        <input
-          type="text"
-          value={props.searchTerm}
-          onChange={props.onSearchTermChange}
-        />
-        <input
-          type="number"
-          min="0"
-          max="99"
-          value={props.playerCount}
-          onChange={props.onPlayerCountChange}
-        />
+        <div className="input-group fluid">
+          <input
+            type="text"
+            value={props.searchTerm}
+            placeholder="Suchbegriff"
+            onChange={props.onSearchTermChange}
+          />
+        </div>
+        <div className="input-group fluid">
+          <input
+            type="number"
+            min={0}
+            max={99}
+            value={props.playerCount}
+            onChange={props.onPlayerCountChange}
+          />
+        </div>
         <RangeInput
           min={1}
           max={10}
@@ -31,47 +38,16 @@ export default function Form(props: InputProps) {
           step={0.5}
           onChange={props.onWeightChange}
         />
-        <input
-          type="number"
-          min="0"
-          max="99"
-          value={props.maxAge}
-          onChange={props.onMaxAgeChange}
-        />
-        <div className="button-group">
-          <label role="button">
-            <input
-              type="checkbox"
-              checked={props.spieleNacht2016}
-              onChange={props.onSpieleNacht2016Change}
-            />
-            Spielenacht 2016
-          </label>
-          <label role="button">
-            <input
-              type="checkbox"
-              checked={props.stadtBibliothek}
-              onChange={props.onStadtBibliothekChange}
-            />
-            Stadtbibliothek
-          </label>
-          <label role="button">
-            <input
-              type="checkbox"
-              checked={props.wuerfelTuermer}
-              onChange={props.onWuerfelTuermerChange}
-            />
-            Würfeltürmer
-            </label>
-          <label role="button">
-            <input
-              type="checkbox"
-              checked={props.kaffeeSatz}
-              onChange={props.onKaffeeSatzChange}
-            />
-            Kaffeesatz
-          </label>
+        <div className="input-group fluid">
+          <input
+            type="number"
+            min={0}
+            max={99}
+            value={props.maxAge}
+            onChange={props.onMaxAgeChange}
+          />
         </div>
+        <CheckBoxGroup items={props.sources} name="source" onChange={props.onSourcesChange}/>
       </form>
     </div>
   );
@@ -83,17 +59,11 @@ interface InputProps {
   rating: [number, number];
   weight: [number, number];
   maxAge: number;
-  spieleNacht2016?: boolean;
-  stadtBibliothek?: boolean;
-  wuerfelTuermer?: boolean;
-  kaffeeSatz?: boolean;
+  sources: Item[];
   onSearchTermChange: React.ChangeEventHandler<HTMLInputElement>;
   onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
   onRatingChange: React.ChangeEventHandler<HTMLInputElement>;
   onWeightChange: React.ChangeEventHandler<HTMLInputElement>;
   onMaxAgeChange: React.ChangeEventHandler<HTMLInputElement>;
-  onSpieleNacht2016Change: React.ChangeEventHandler<HTMLInputElement>;
-  onStadtBibliothekChange: React.ChangeEventHandler<HTMLInputElement>;
-  onWuerfelTuermerChange: React.ChangeEventHandler<HTMLInputElement>;
-  onKaffeeSatzChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSourcesChange: (sourceId: number) => void;
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export default function RangeInput(props: RangeInputProps) {
   return(
-    <div>
+    <div className="input-group fluid">
       <input
         name="min"
         type="number"
