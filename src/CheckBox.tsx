@@ -4,7 +4,7 @@ export default function CheckBox(props: CheckBoxProps) {
   const id = 'checkbox-' + props.name + props.item.id;
 
   return (
-    <div className="input-group fluid">
+    <div className="input-group">
       <input
         type="checkbox"
         checked={props.item.checked}

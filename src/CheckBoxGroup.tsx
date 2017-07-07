@@ -8,7 +8,12 @@ export default function CheckBoxGroup(props: CheckBoxGroupProps) {
 
   return (
     <div className="col-sm-12">
-      {items}
+      <fieldset>
+        <div>
+          <legend>{props.name}</legend>
+          {items}
+        </div>
+      </fieldset>
     </div>
   );
 }

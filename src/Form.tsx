@@ -16,19 +16,23 @@ export default function Form(props: InputProps) {
           />
         </div>
         <div className="input-group fluid">
-          <input
-            type="number"
-            min={0}
-            max={99}
-            value={props.playerCount}
-            onChange={props.onPlayerCountChange}
-          />
+          <label>
+            Spieleranzahl
+            <input
+              type="number"
+              min={0}
+              max={99}
+              value={props.playerCount}
+              onChange={props.onPlayerCountChange}
+            />
+          </label>
         </div>
         <RangeInput
           min={1}
           max={10}
           value={props.rating}
           step={1}
+          name="Bewertung"
           onChange={props.onRatingChange}
         />
         <RangeInput
@@ -36,18 +40,22 @@ export default function Form(props: InputProps) {
           max={5}
           value={props.weight}
           step={0.5}
+          name="Gewicht"
           onChange={props.onWeightChange}
         />
         <div className="input-group fluid">
-          <input
-            type="number"
-            min={0}
-            max={99}
-            value={props.maxAge}
-            onChange={props.onMaxAgeChange}
-          />
+          <label>
+            Maximales Alter
+            <input
+              type="number"
+              min={0}
+              max={99}
+              value={props.maxAge}
+              onChange={props.onMaxAgeChange}
+            />
+          </label>
         </div>
-        <CheckBoxGroup items={props.sources} name="source" onChange={props.onSourcesChange}/>
+        <CheckBoxGroup items={props.sources} name="Quelle" onChange={props.onSourcesChange}/>
       </form>
     </div>
   );
