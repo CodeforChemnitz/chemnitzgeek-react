@@ -1,6 +1,7 @@
 import * as React from 'react';
+import RangeInput from './RangeInput';
 
-export default function Input(props: InputProps) {
+export default function Form(props: InputProps) {
   return (
     <div>
       <form>
@@ -15,6 +16,20 @@ export default function Input(props: InputProps) {
           max="99"
           value={props.playerCount}
           onChange={props.onPlayerCountChange}
+        />
+        <RangeInput
+          min={1}
+          max={10}
+          value={props.rating}
+          step={1}
+          onChange={props.onRatingChange}
+        />
+        <RangeInput
+          min={1}
+          max={5}
+          value={props.weight}
+          step={0.5}
+          onChange={props.onWeightChange}
         />
         <input
           type="number"

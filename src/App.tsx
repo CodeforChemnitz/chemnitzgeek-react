@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Input from './Input';
+import Form from './Form';
 import Table from './Table';
 import {Game} from './TableRow';
 
@@ -10,8 +10,8 @@ export default class App extends React.Component<AppProps, AppState> {
       games: [],
       searchTerm: '',
       playerCount: 0,
-      rating: [0, 100],
-      weight: [0, 100],
+      rating: [1, 10],
+      weight: [1, 5],
       maxAge: 99,
       spieleNacht2016: true,
       stadtBibliothek: true,
@@ -32,7 +32,7 @@ export default class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <div>
-        <Input
+        <Form
           searchTerm={this.state.searchTerm}
           playerCount={this.state.playerCount}
           rating={this.state.rating}
