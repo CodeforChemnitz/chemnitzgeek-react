@@ -38,28 +38,44 @@ export default function Form(props: InputProps) {
           value={props.maxAge}
           onChange={props.onMaxAgeChange}
         />
-      </form>
-      <form>
-        <input
-          type="checkbox"
-          checked={props.spieleNacht2016}
-          onChange={props.onSpieleNacht2016Change}
-        />
-        <input
-          type="checkbox"
-          checked={props.stadtBibliothek}
-          onChange={props.onStadtBibliothekChange}
-        />
-        <input
-          type="checkbox"
-          checked={props.wuerfelTuermer}
-          onChange={props.onWuerfelTuermerChange}
-        />
-        <input
-          type="checkbox"
-          checked={props.kaffeeSatz}
-          onChange={props.onKaffeeSatzChange}
-        />
+        <div className="button-group">
+          <label role="button">
+            <input
+              type="checkbox"
+              checked={props.spieleNacht2016}
+              onChange={props.onSpieleNacht2016Change}
+              name="sources"
+            />
+            Spielenacht 2016
+          </label>
+          <label role="button">
+            <input
+              type="checkbox"
+              checked={props.stadtBibliothek}
+              onChange={props.onStadtBibliothekChange}
+              name="sources"
+            />
+            Stadtbibliothek
+          </label>
+          <label role="button">
+            <input
+              type="checkbox"
+              checked={props.wuerfelTuermer}
+              onChange={props.onWuerfelTuermerChange}
+              name="sources"
+            />
+            Würfeltürmer
+            </label>
+          <label role="button">
+            <input
+              type="checkbox"
+              checked={props.kaffeeSatz}
+              onChange={props.onKaffeeSatzChange}
+              name="sources"
+            />
+            Kaffeesatz
+          </label>
+        </div>
       </form>
     </div>
   );
