@@ -13,7 +13,7 @@ export default class App extends React.Component<AppProps, AppState> {
       playerCount: 0,
       rating: [1, 10],
       weight: [1, 5],
-      maxAge: 99,
+      minAge: 0,
       sources: [
         'Spielenacht 2016',
         'Stadtbibliothek',
@@ -26,7 +26,7 @@ export default class App extends React.Component<AppProps, AppState> {
     this.handlePlayerCountChange = this.handlePlayerCountChange.bind(this);
     this.handleRatingChange = this.handleRatingChange.bind(this);
     this.handleWeightChange = this.handleWeightChange.bind(this);
-    this.handleMaxAgeChange = this.handleMaxAgeChange.bind(this);
+    this.handleMinAgeChange = this.handleMinAgeChange.bind(this);
     this.handleSourcesChange = this.handleSourcesChange.bind(this);
   }
 
@@ -38,13 +38,13 @@ export default class App extends React.Component<AppProps, AppState> {
           playerCount={this.state.playerCount}
           rating={this.state.rating}
           weight={this.state.weight}
-          maxAge={this.state.maxAge}
+          minAge={this.state.minAge}
           sources={this.state.sources}
           onSearchTermChange={this.handleSearchTermChange}
           onPlayerCountChange={this.handlePlayerCountChange}
           onRatingChange={this.handleRatingChange}
           onWeightChange={this.handleWeightChange}
-          onMaxAgeChange={this.handleMaxAgeChange}
+          onMinAgeChange={this.handleMinAgeChange}
           onSourcesChange={this.handleSourcesChange}
         />
         <Table {...this.state}/>
@@ -88,9 +88,9 @@ export default class App extends React.Component<AppProps, AppState> {
     }
   }
 
-  handleMaxAgeChange(event: React.ChangeEvent<HTMLInputElement>) {
+  handleMinAgeChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
-      maxAge: Number(event.target.value),
+      minAge: Number(event.target.value),
     });
   }
 
@@ -116,6 +116,6 @@ export interface FormState {
   playerCount: number;
   rating: [number, number];
   weight: [number, number];
-  maxAge: number;
+  minAge: number;
   sources: Item[];
 }

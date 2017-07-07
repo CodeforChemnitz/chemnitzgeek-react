@@ -45,13 +45,13 @@ export default function Form(props: InputProps) {
         />
         <div className="input-group fluid">
           <label>
-            Maximales Alter
+            Minimales Alter
             <input
               type="number"
               min={0}
               max={99}
-              value={props.maxAge}
-              onChange={props.onMaxAgeChange}
+              value={props.minAge}
+              onChange={props.onMinAgeChange}
             />
           </label>
         </div>
@@ -66,6 +66,6 @@ interface InputProps extends FormState {
   onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
   onRatingChange: React.ChangeEventHandler<HTMLInputElement>;
   onWeightChange: React.ChangeEventHandler<HTMLInputElement>;
-  onMaxAgeChange: React.ChangeEventHandler<HTMLInputElement>;
+  onMinAgeChange: React.ChangeEventHandler<HTMLInputElement>;
   onSourcesChange: (sourceId: number) => void;
 }
