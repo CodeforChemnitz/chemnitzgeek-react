@@ -31,7 +31,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   render() {
     return (
-      <div>
+      <div className="row">
         <Form
           searchTerm={this.state.searchTerm}
           playerCount={this.state.playerCount}

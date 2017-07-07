@@ -3,7 +3,7 @@ import RangeInput from './RangeInput';
 
 export default function Form(props: InputProps) {
   return (
-    <div>
+    <div className="col-sm-3">
       <form>
         <input
           type="text"

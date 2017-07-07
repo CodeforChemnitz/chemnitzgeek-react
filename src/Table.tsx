@@ -10,7 +10,7 @@ export default function Table(props: TableProps) {
   ));
 
   return (
-    <div>
+    <div className="col-sm-9">
       <table>
         <thead>
           <td>Name</td>
