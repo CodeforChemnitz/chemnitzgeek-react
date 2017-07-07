@@ -23,6 +23,38 @@ export default class App extends React.Component<AppProps, AppState> {
     this.handleRatingChange = this.handleRatingChange.bind(this);
     this.handleWeightChange = this.handleWeightChange.bind(this);
     this.handleMaxAgeChange = this.handleMaxAgeChange.bind(this);
+    this.handleSpieleNacht2016Change = this.handleSpieleNacht2016Change.bind(this);
+    this.handleStadtBibliothekChange = this.handleStadtBibliothekChange.bind(this);
+    this.handleWuerfelTuermerChange = this.handleWuerfelTuermerChange.bind(this);
+    this.handleKaffeeSatzChange = this.handleKaffeeSatzChange.bind(this);
+  }
+
+  render() {
+    return (
+      <div>
+        <Input
+          searchTerm={this.state.searchTerm}
+          playerCount={this.state.playerCount}
+          rating={this.state.rating}
+          weight={this.state.weight}
+          maxAge={this.state.maxAge}
+          spieleNacht2016={this.state.spieleNacht2016}
+          stadtBibliothek={this.state.stadtBibliothek}
+          wuerfelTuermer={this.state.wuerfelTuermer}
+          kaffeeSatz={this.state.kaffeeSatz}
+          onSearchTermChange={this.handleSearchTermChange}
+          onPlayerCountChange={this.handlePlayerCountChange}
+          onRatingChange={this.handleRatingChange}
+          onWeightChange={this.handleWeightChange}
+          onMaxAgeChange={this.handleMaxAgeChange}
+          onSpieleNacht2016Change={this.handleSpieleNacht2016Change}
+          onStadtBibliothekChange={this.handleStadtBibliothekChange}
+          onWuerfelTuermerChange={this.handleWuerfelTuermerChange}
+          onKaffeeSatzChange={this.handleKaffeeSatzChange}
+        />
+        <Table games={this.state.games}/>
+      </div>
+    );
   }
 
   handleSearchTermChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -53,24 +85,28 @@ export default class App extends React.Component<AppProps, AppState> {
     });
   }
 
-  render() {
-    return (
-      <div>
-        <Input
-          searchTerm={this.state.searchTerm}
-          playerCount={this.state.playerCount}
-          rating={this.state.rating}
-          weight={this.state.weight}
-          maxAge={this.state.maxAge}
-          onSearchTermChange={this.handleSearchTermChange}
-          onPlayerCountChange={this.handlePlayerCountChange}
-          onRatingChange={this.handleRatingChange}
-          onWeightChange={this.handleWeightChange}
-          onMaxAgeChange={this.handleMaxAgeChange}
-        />
-        <Table games={this.state.games}/>
-      </div>
-    );
+  handleSpieleNacht2016Change(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      spieleNacht2016: Boolean(event.target.checked),
+    });
+  }
+
+  handleStadtBibliothekChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      stadtBibliothek: Boolean(event.target.checked),
+    });
+  }
+
+  handleWuerfelTuermerChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      wuerfelTuermer: Boolean(event.target.checked),
+    });
+  }
+
+  handleKaffeeSatzChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({
+      kaffeeSatz: Boolean(event.target.checked),
+    });
   }
 }
 
