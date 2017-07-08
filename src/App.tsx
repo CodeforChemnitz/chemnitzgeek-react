@@ -50,52 +50,42 @@ export default class App extends React.Component<AppProps, AppState> {
       fetch(source.url)
       .then((response) => response.json())
       .then((json) => {
-        const games: Game[] = json.map((i: Game) => ({...i, sources: Set.of(source.id)}));
-        this.setState((prevState) => ({games}));
+        this.setState((prevState) => ({
+          games: [
+            ...prevState.games,
+            ...json.map((i: Game) => ({...i, sources: Set.of(source.id)}))
+          ]
+        }));
       });
     });
   }
 
   handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      searchTerm: event.target.value,
-    });
+    this.setState((prevState) => ({searchTerm: event.target.value}));
   }
 
   handlePlayerCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      playerCount: Number(event.target.value),
-    });
+    this.setState((prevState) => ({playerCount: Number(event.target.value)}));
   }
 
   handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'max') {
-      this.setState({
-        rating: [this.state.rating[0], Number(event.target.value)]
-      });
+      this.setState((prevState) => ({rating: [this.state.rating[0], Number(event.target.value)]}));
     } else {
-      this.setState({
-        rating: [Number(event.target.value), this.state.rating[1]]
-      });
+      this.setState((prevState) => ({rating: [Number(event.target.value), this.state.rating[1]]}));
     }
   }
 
   handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'max') {
-      this.setState({
-        weight: [this.state.weight[0], Number(event.target.value)]
-      });
+      this.setState((prevState) => ({weight: [this.state.weight[0], Number(event.target.value)]}));
     } else {
-      this.setState({
-        weight: [Number(event.target.value), this.state.weight[1]]
-      });
+      this.setState((prevState) => ({weight: [Number(event.target.value), this.state.weight[1]]}));
     }
   }
 
   handleMinAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      minAge: Number(event.target.value),
-    });
+    this.setState((prevState) => ({minAge: Number(event.target.value)}));
   }
 
   handleSourcesChange = (sourceId: number) => {

@@ -8,7 +8,7 @@ export default function TableRow(props: TableRowProps) {
 
   return (
     <tr>
-      <td>{props.name}</td>
+      <td>{props.localName}</td>
       <td>{props.rating}</td>
       <td>{playerCount}</td>
       <td>{props.minAge}+</td>
