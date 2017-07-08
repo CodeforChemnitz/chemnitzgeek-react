@@ -26,15 +26,12 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
+    const {games, ...formState} = this.state;
+
     return (
       <div className="row">
         <Form
-          searchTerm={this.state.searchTerm}
-          playerCount={this.state.playerCount}
-          rating={this.state.rating}
-          weight={this.state.weight}
-          minAge={this.state.minAge}
-          sources={this.state.sources}
+          {...formState}
           onSearchTermChange={this.handleSearchTermChange}
           onPlayerCountChange={this.handlePlayerCountChange}
           onRatingChange={this.handleRatingChange}
