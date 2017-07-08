@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 export default function TableRow(props: TableRowProps) {
-  const playerCount = (props.playerCount[0] === props.playerCount[1])
-    ? props.playerCount[0]
-    : `${props.playerCount[0]} – ${props.playerCount[1]}`;
+  const playerCount = (props.minPlayers === props.maxPlayers)
+    ? props.minPlayers
+    : `${props.minPlayers} – ${props.maxPlayers}`;
 
   return (
     <tr>
@@ -12,7 +12,7 @@ export default function TableRow(props: TableRowProps) {
       <td>{playerCount}</td>
       <td>{props.minAge}+</td>
       <td>{props.weight}</td>
-      <td>{props.year}</td>
+      <td>{props.yearPublished}</td>
       <td>{props.sources.join(', ')}</td>
     </tr>
   );
@@ -22,12 +22,15 @@ interface TableRowProps extends Game {
 }
 
 export interface Game {
+  bggID: number;
   name: string;
-  rating: number;
-  playerCount: [number, number];
+  yearPublished: number;
   minAge: number;
+  minPlayers: number;
+  maxPlayers: number;
+  rating: number;
   weight: number;
-  year: number;
+  localName: number;
+
   sources: number[];
-  bggId: number;
 }

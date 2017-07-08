@@ -49,29 +49,10 @@ export default class App extends React.Component<AppProps, AppState> {
       fetch(source.url)
       .then((response) => response.json())
       .then((json) => {
-        json.forEach((i: GameDate) => {
-          // const games = this.state.games.slice();
-          // const existingGame = games.find((game) => game.bggId === newGame.bggId);
-          // if (existingGame) {
-          //   existingGame.sources = [...existingGame.sources, newGame.sources[0]].sort();
-          //   this.setState((prevState) => ({
-          //     games: games,
-          //   }));
-          // } else {
-          this.setState((prevState) => {
-            const newGame: Game = {
-              name: i.name,
-              rating: i.rating,
-              playerCount: [i.minPlayers, i.maxPlayers],
-              minAge: i.minAge,
-              weight: i.weight,
-              year: i.yearPublished,
-              sources: [source.id],
-              bggId: i.bggID,
-            };
-            return {games: [...prevState.games, newGame]};
-          });
-          // }
+        json.forEach((newGame: Game) => {
+          this.setState((prevState) => ({
+            games: [...prevState.games, {...newGame, sources: [source.id]}]
+          }));
         });
       });
     });
@@ -144,16 +125,4 @@ export interface FormState {
   weight: [number, number];
   minAge: number;
   sources: Item[];
-}
-
-interface GameDate {
-  bggID: number;
-  name: string;
-  yearPublished: number;
-  minAge: number;
-  minPlayers: number;
-  maxPlayers: number;
-  rating: number;
-  weight: number;
-  localName: number;
 }
