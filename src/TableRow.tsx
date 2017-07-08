@@ -3,27 +3,27 @@ import * as React from 'react';
 export default function TableRow(props: TableRowProps) {
   return (
     <tr>
-      <td>{props.game.name}</td>
-      <td>{props.game.rating}</td>
-      <td>{props.game.players}</td>
-      <td>{props.game.age}</td>
-      <td>{props.game.weight}</td>
-      <td>{props.game.year}</td>
-      <td>{props.game.source}</td>
+      <td>{props.name}</td>
+      <td>{props.rating}</td>
+      <td>{props.playerCount[0]} – {props.playerCount[1]}</td>
+      <td>{props.minAge}+</td>
+      <td>{props.weight}</td>
+      <td>{props.year}</td>
+      <td>{props.sources.join(', ')}</td>
     </tr>
   );
 }
 
-interface TableRowProps {
-  game: Game;
+interface TableRowProps extends Game {
 }
 
 export interface Game {
   name: string;
   rating: number;
-  players: number;
-  age: number;
+  playerCount: [number, number];
+  minAge: number;
   weight: number;
   year: number;
-  source: number;
+  sources: number[];
+  bggId: number;
 }

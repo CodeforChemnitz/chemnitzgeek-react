@@ -7,6 +7,7 @@ import {Game} from './TableRow';
 export default class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
+    const baseUrl = 'https://rawcdn.githack.com/CodeforChemnitz/ChemnitzGeek/master/html/gameData.';
     this.state = {
       games: [],
       searchTerm: '',
@@ -15,12 +16,12 @@ export default class App extends React.Component<AppProps, AppState> {
       weight: [1, 5],
       minAge: 0,
       sources: [
-        'Spielenacht 2016',
-        'Stadtbibliothek',
-        'Studentenwerk',
-        'Würfeltürmer',
-        'Kaffeesatz',
-      ].map((item, index) => ({id: index, name: item, checked: true})),
+        // ['Spielenacht 2016', 'spielenacht2016.json'],
+        // ['Stadtbibliothek', 'bibliothek.json'],
+        // ['Studentenwerk', 'swcz.json'],
+        // ['Würfeltürmer', 'tuermer.json'],
+        ['Kaffeesatz', 'kaffeesatz.json'],
+      ].map((item, index) => ({id: index, name: item[0], checked: true, url: baseUrl + item[1]})),
     };
     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
     this.handlePlayerCountChange = this.handlePlayerCountChange.bind(this);
@@ -50,6 +51,39 @@ export default class App extends React.Component<AppProps, AppState> {
         <Table {...this.state}/>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.state.sources.map((source) => {
+      fetch(source.url)
+      .then((response) => response.json())
+      .then((json) => {
+        json.map((i: GameDate) => {
+          const newGame: Game = {
+            name: i.name,
+            rating: i.rating,
+            playerCount: [i.minPlayers, i.maxPlayers],
+            minAge: i.minAge,
+            weight: i.weight,
+            year: i.yearPublished,
+            sources: [source.id],
+            bggId: i.bggID,
+          };
+          // const games = this.state.games.slice();
+          // const existingGame = games.find((game) => game.bggId === newGame.bggId);
+          // if (existingGame) {
+          //   existingGame.sources = [...existingGame.sources, newGame.sources[0]].sort();
+          //   this.setState((prevState) => ({
+          //     games: games,
+          //   }));
+          // } else {
+          this.setState((prevState) => ({
+            games: [...prevState.games, newGame],
+          }));
+          // }
+        });
+      });
+    });
   }
 
   handleSearchTermChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -105,7 +139,8 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 }
 
-interface AppProps {}
+interface AppProps {
+}
 
 export interface AppState extends FormState {
   games: Game[];
@@ -118,4 +153,16 @@ export interface FormState {
   weight: [number, number];
   minAge: number;
   sources: Item[];
+}
+
+interface GameDate {
+  bggID: number;
+  name: string;
+  yearPublished: number;
+  minAge: number;
+  minPlayers: number;
+  maxPlayers: number;
+  rating: number;
+  weight: number;
+  localName: number;
 }

@@ -12,23 +12,22 @@ export default class Table extends React.Component<TableProps, TableState> {
 
   render() {
     const rowList = this.props.games.map((game, index) => (
-      <TableRow
-        key={index}
-        game={game}
-      />
+      <TableRow key={index} {...game}/>
     ));
 
     return (
       <div className="col-sm-9">
-        <table className="scrollable striped">
+        <table className="striped">
           <thead>
-            <th>Name</th>
-            <th>Bewertung</th>
-            <th>Spieleranzahl</th>
-            <th>Alter</th>
-            <th>Gewicht</th>
-            <th>Jahr</th>
-            <th>Quelle</th>
+            <tr>
+              <th>Name</th>
+              <th>Bewertung</th>
+              <th>Spieleranzahl</th>
+              <th>Alter</th>
+              <th>Gewicht</th>
+              <th>Jahr</th>
+              <th>Quelle</th>
+            </tr>
           </thead>
           <tbody>{rowList}</tbody>
         </table>
