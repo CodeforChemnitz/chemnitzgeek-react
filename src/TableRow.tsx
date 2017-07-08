@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Set} from 'immutable';
 
 export default function TableRow(props: TableRowProps) {
   const playerCount = (props.minPlayers === props.maxPlayers)
@@ -32,5 +33,5 @@ export interface Game {
   weight: number;
   localName: number;
 
-  sources: number[];
+  sources: Set<number>;
 }

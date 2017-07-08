@@ -3,6 +3,7 @@ import Form from './Form';
 import Table from './Table';
 import {Item} from './CheckBox';
 import {Game} from './TableRow';
+import {Set} from 'immutable';
 
 export default class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -49,11 +50,8 @@ export default class App extends React.Component<AppProps, AppState> {
       fetch(source.url)
       .then((response) => response.json())
       .then((json) => {
-        json.forEach((newGame: Game) => {
-          this.setState((prevState) => ({
-            games: [...prevState.games, {...newGame, sources: [source.id]}]
-          }));
-        });
+        const games: Game[] = json.map((i: Game) => ({...i, sources: Set.of(source.id)}));
+        this.setState((prevState) => ({games}));
       });
     });
   }
@@ -106,7 +104,7 @@ export default class App extends React.Component<AppProps, AppState> {
       const sources = prevState.sources.slice();
       sources[i].checked = !sources[i].checked;
 
-      return {sources: sources};
+      return {sources};
     });
   }
 }
