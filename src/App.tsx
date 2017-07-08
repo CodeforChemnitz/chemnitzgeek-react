@@ -16,10 +16,10 @@ export default class App extends React.Component<AppProps, AppState> {
       weight: [1, 5],
       minAge: 0,
       sources: [
-        // ['Spielenacht 2016', 'spielenacht2016.json'],
-        // ['Stadtbibliothek', 'bibliothek.json'],
-        // ['Studentenwerk', 'swcz.json'],
-        // ['Würfeltürmer', 'tuermer.json'],
+        ['Spielenacht 2016', 'spielenacht2016.json'],
+        ['Stadtbibliothek', 'bibliothek.json'],
+        ['Studentenwerk', 'swcz.json'],
+        ['Würfeltürmer', 'tuermer.json'],
         ['Kaffeesatz', 'kaffeesatz.json'],
       ].map((item, index) => ({id: index, name: item[0], checked: true, url: baseUrl + item[1]})),
     };
@@ -45,21 +45,11 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   componentDidMount() {
-    this.state.sources.map((source) => {
+    this.state.sources.forEach((source) => {
       fetch(source.url)
       .then((response) => response.json())
       .then((json) => {
-        json.map((i: GameDate) => {
-          const newGame: Game = {
-            name: i.name,
-            rating: i.rating,
-            playerCount: [i.minPlayers, i.maxPlayers],
-            minAge: i.minAge,
-            weight: i.weight,
-            year: i.yearPublished,
-            sources: [source.id],
-            bggId: i.bggID,
-          };
+        json.forEach((i: GameDate) => {
           // const games = this.state.games.slice();
           // const existingGame = games.find((game) => game.bggId === newGame.bggId);
           // if (existingGame) {
@@ -68,9 +58,19 @@ export default class App extends React.Component<AppProps, AppState> {
           //     games: games,
           //   }));
           // } else {
-          this.setState((prevState) => ({
-            games: [...prevState.games, newGame],
-          }));
+          this.setState((prevState) => {
+            const newGame: Game = {
+              name: i.name,
+              rating: i.rating,
+              playerCount: [i.minPlayers, i.maxPlayers],
+              minAge: i.minAge,
+              weight: i.weight,
+              year: i.yearPublished,
+              sources: [source.id],
+              bggId: i.bggID,
+            };
+            return {games: [...prevState.games, newGame]};
+          });
           // }
         });
       });
