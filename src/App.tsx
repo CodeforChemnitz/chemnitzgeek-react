@@ -51,10 +51,9 @@ export default class App extends React.Component<AppProps, AppState> {
       .then((response) => response.json())
       .then((json) => {
         this.setState((prevState) => ({
-          games: [
-            ...prevState.games,
-            ...json.map((i: Game) => ({...i, sources: Set.of(source.id)}))
-          ]
+          games: prevState.games.concat(
+            json.map((i: Game) => ({...i, sources: Set.of(source.id)}))
+          ),
         }));
       });
     });
