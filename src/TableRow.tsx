@@ -31,7 +31,7 @@ export interface Game {
   maxPlayers: number;
   rating: number;
   weight: number;
-  localName: number;
+  localName: string;
 
   sources: Set<number>;
 }

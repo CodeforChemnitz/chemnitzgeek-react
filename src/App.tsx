@@ -12,10 +12,10 @@ export default class App extends React.Component<AppProps, AppState> {
     this.state = {
       games: [],
       searchTerm: '',
-      playerCount: 0,
+      playerCount: 4,
       rating: [1, 10],
       weight: [1, 5],
-      minAge: 0,
+      minAge: 10,
       sources: [
         ['Spielenacht 2016', 'spielenacht2016.json'],
         ['Stadtbibliothek', 'bibliothek.json'],
@@ -84,7 +84,7 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   handleMinAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState((prevState) => ({minAge: Number(event.target.value)}));
+    this.setState({minAge: Number(event.target.value)});
   }
 
   handleSourcesChange = (sourceId: number) => {
