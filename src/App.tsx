@@ -12,10 +12,10 @@ export default class App extends React.Component<AppProps, AppState> {
     this.state = {
       games: [],
       searchTerm: '',
-      playerCount: 4,
+      playerCount: 0,
       rating: [1, 10],
       weight: [1, 5],
-      minAge: 10,
+      minAge: 0,
       sources: [
         ['Spielenacht 2016', 'spielenacht2016.json'],
         ['Stadtbibliothek', 'bibliothek.json'],

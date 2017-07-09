@@ -35,13 +35,15 @@ export default class Table extends React.Component<TableProps, TableState> {
         !Set(game.sources)
           .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
           .isEmpty()
-        && game.minPlayers <= this.props.playerCount
-        && this.props.playerCount <= game.maxPlayers
+        && (0 === this.props.playerCount
+          || game.minPlayers <= this.props.playerCount
+          &&  this.props.playerCount <= game.maxPlayers)
         && this.props.rating[0] <= game.rating
         && game.rating <= this.props.rating[1]
         && this.props.weight[0] <= game.weight
         && game.weight <= this.props.weight[1]
-        && game.minAge <= this.props.minAge
+        && (0 === this.props.minAge
+          || game.minAge <= this.props.minAge)
         && game.localName.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
       ))
       .sort((a, b) => {
