@@ -12,20 +12,19 @@ export default class Table extends React.Component<TableProps, TableState> {
   }
 
   render() {
-    const columns: {id: column, name: string}[] = [
-      {id: 'localName', name: 'Name'},
-      {id: 'rating', name: 'Bewertung'},
-      {id: 'minAge', name: 'Alter'},
-      {id: 'minPlayers', name: 'Spieleranzahl'},
-      {id: 'weight', name: 'Gewicht'},
-      {id: 'yearPublished', name: 'Jahr'},
-    ];
-    const columnList = columns.map((col, index) => {
+    const columnList = ([
+      ['localName', 'Name'],
+      ['rating', 'Bewertung'],
+      ['minAge', 'Alter'],
+      ['minPlayers', 'Spieleranzahl'],
+      ['weight', 'Gewicht'],
+      ['yearPublished', 'Jahr'],
+    ] as [column, string][]).map((col, index) => {
       let symbol = '';
-      if (col.id === this.state.column) {
+      if (col[0] === this.state.column) {
         symbol = (this.state.ascending) ? '▲' : '▼';
       }
-      return <th><a href="#" onClick={this.handleSortChange(col.id)}>{col.name}{symbol}</a></th>;
+      return <th><a href="#" onClick={this.handleSortChange(col[0])}>{col[1]}{symbol}</a></th>;
     });
 
     const rowList = this.props.games

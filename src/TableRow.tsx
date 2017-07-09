@@ -8,13 +8,13 @@ export default function TableRow(props: TableRowProps) {
 
   return (
     <tr>
-      <td>{props.localName}</td>
-      <td>{props.rating}</td>
-      <td>{playerCount}</td>
-      <td>{props.minAge}+</td>
-      <td>{props.weight}</td>
-      <td>{props.yearPublished}</td>
-      <td>{props.sources.join(', ')}</td>
+      <td data-label="Name">{props.localName}</td>
+      <td data-label="Bewertung">{props.rating}</td>
+      <td data-label="Spieleranzahl">{playerCount}</td>
+      <td data-label="Alter">{props.minAge}+</td>
+      <td data-label="Gewicht">{props.weight}</td>
+      <td data-label="Jahr">{props.yearPublished}</td>
+      <td data-label="Quelle">{props.sources.join(', ')}</td>
     </tr>
   );
 }
