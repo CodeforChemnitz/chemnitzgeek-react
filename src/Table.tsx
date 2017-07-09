@@ -6,23 +6,39 @@ export default class Table extends React.Component<TableProps, TableState> {
   constructor(props: TableProps) {
     super(props);
     this.state = {
-      sortKey: 'localName',
-      sortAsc: 1,
+      column: 'localName',
+      ascending: true,
     };
   }
 
   render() {
+    const columns: {id: column, name: string}[] = [
+      {id: 'localName', name: 'Name'},
+      {id: 'rating', name: 'Bewertung'},
+      {id: 'minAge', name: 'Alter'},
+      {id: 'minPlayers', name: 'Spieleranzahl'},
+      {id: 'weight', name: 'Gewicht'},
+      {id: 'yearPublished', name: 'Jahr'},
+    ];
+    const columnList = columns.map((col, index) => {
+      let symbol = '';
+      if (col.id === this.state.column) {
+        symbol = (this.state.ascending) ? '▲' : '▼';
+      }
+      return <th><a href="#" onClick={this.handleSortChange(col.id)}>{col.name}{symbol}</a></th>;
+    });
+
     const rowList = this.props.games
       .sort((a, b) => {
-        const valA = a[this.state.sortKey];
-        const valB = b[this.state.sortKey];
+        const valA = a[this.state.column];
+        const valB = b[this.state.column];
         let sortInfo: number;
-        if (this.state.sortKey === 'localName') {
+        if (this.state.column === 'localName') {
           sortInfo = String(valA).localeCompare(String(valB));
         } else {
           sortInfo = Math.sign(Number(valA) - Number(valB));
         }
-        return sortInfo * this.state.sortAsc;
+        return (this.state.ascending) ? sortInfo : -sortInfo;
       })
       .map((game, index) => <TableRow key={index} {...game}/>);
 
@@ -31,12 +47,7 @@ export default class Table extends React.Component<TableProps, TableState> {
         <table className="striped">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Bewertung</th>
-              <th>Spieleranzahl</th>
-              <th>Alter</th>
-              <th>Gewicht</th>
-              <th>Jahr</th>
+              {columnList}
               <th>Quelle</th>
             </tr>
           </thead>
@@ -45,17 +56,27 @@ export default class Table extends React.Component<TableProps, TableState> {
       </div>
     );
   }
+
+  handleSortChange = (column: column) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    this.setState((prevState) => (
+      (prevState.column === column)
+        ? {ascending: !prevState.ascending}
+        : {column, ascending: true}
+    ));
+  }
 }
 
 interface TableProps extends AppState {
 }
 
 interface TableState {
-  sortKey: 'localName'
+  column: column;
+  ascending: boolean;
+}
+
+type column = 'localName'
     | 'rating'
     | 'minAge'
     | 'minPlayers'
     | 'weight'
     | 'yearPublished';
-  sortAsc: 1 | -1;
-}
