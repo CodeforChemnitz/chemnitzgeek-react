@@ -19,12 +19,14 @@ export default class Table extends React.Component<TableProps, TableState> {
       ['minPlayers', 'Spieleranzahl'],
       ['weight', 'Gewicht'],
       ['yearPublished', 'Jahr'],
-    ] as [column, string][]).map((col, index) => {
+    ] as [column, string][]).map((col) => {
       let symbol = '';
       if (col[0] === this.state.column) {
         symbol = (this.state.ascending) ? '▲' : '▼';
       }
-      return <th><a href="#" onClick={this.handleSortChange(col[0])}>{col[1]}{symbol}</a></th>;
+      const ch = this.handleSortChange(col[0]);
+      const style = {textDecoration: 'none', color: '#212121'};
+      return <th><a href="#" onClick={ch} style={style}>{col[1]}{symbol}</a></th>;
     });
 
     const rowList = this.props.games
