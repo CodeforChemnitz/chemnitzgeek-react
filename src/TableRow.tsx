@@ -5,17 +5,19 @@ export default function TableRow(props: TableRowProps) {
   const playerCount = (props.minPlayers === props.maxPlayers)
     ? props.minPlayers
     : `${props.minPlayers} – ${props.maxPlayers}`;
+  const rating = (props.rating - 1) / 9 * 1000;
+  const weight = (props.weight - 1) / 4 * 1000;
 
   return (
     <tr>
       <td data-label="Name">{props.localName}</td>
       <td data-label="Bewertung">
-        <progress value={props.rating} title={String(props.rating)} min={1} max={10}/>
+        <progress value={rating} title={String(props.rating)} max={1000}/>
       </td>
       <td data-label="Spieleranzahl">{playerCount}</td>
       <td data-label="Alter">{props.minAge}+</td>
       <td data-label="Gewicht">
-        <progress value={props.weight} title={String(props.weight)} min={1} max={5}/>
+        <progress value={weight} title={String(props.weight)} max={1000} className="secondary"/>
       </td>
       <td data-label="Jahr">{props.yearPublished}</td>
       <td data-label="Quelle">{props.sources.join(', ')}</td>
