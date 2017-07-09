@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TableRow /*, {Game}*/ from './TableRow';
 import {AppState} from './App';
+import {Set} from 'immutable';
 
 export default class Table extends React.Component<TableProps, TableState> {
   constructor(props: TableProps) {
@@ -31,7 +32,10 @@ export default class Table extends React.Component<TableProps, TableState> {
 
     const rowList = this.props.games
       .filter((game) => (
-        game.minPlayers <= this.props.playerCount
+        !Set(game.sources)
+          .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
+          .isEmpty()
+        && game.minPlayers <= this.props.playerCount
         && this.props.playerCount <= game.maxPlayers
         && this.props.rating[0] <= game.rating
         && game.rating <= this.props.rating[1]
