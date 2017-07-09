@@ -60,26 +60,26 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState((prevState) => ({searchTerm: event.target.value}));
+    this.setState({searchTerm: event.target.value});
   }
 
   handlePlayerCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState((prevState) => ({playerCount: Number(event.target.value)}));
+    this.setState({playerCount: Number(event.target.value)});
   }
 
   handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'max') {
-      this.setState((prevState) => ({rating: [this.state.rating[0], Number(event.target.value)]}));
+      this.setState({rating: [this.state.rating[0], Number(event.target.value)]});
     } else {
-      this.setState((prevState) => ({rating: [Number(event.target.value), this.state.rating[1]]}));
+      this.setState({rating: [Number(event.target.value), this.state.rating[1]]});
     }
   }
 
   handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'max') {
-      this.setState((prevState) => ({weight: [this.state.weight[0], Number(event.target.value)]}));
+      this.setState({weight: [this.state.weight[0], Number(event.target.value)]});
     } else {
-      this.setState((prevState) => ({weight: [Number(event.target.value), this.state.weight[1]]}));
+      this.setState({weight: [Number(event.target.value), this.state.weight[1]]});
     }
   }
 

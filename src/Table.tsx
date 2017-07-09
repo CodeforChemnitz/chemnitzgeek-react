@@ -15,8 +15,8 @@ export default class Table extends React.Component<TableProps, TableState> {
     const columnList = ([
       ['localName', 'Name'],
       ['rating', 'Bewertung'],
-      ['minAge', 'Alter'],
       ['minPlayers', 'Spieleranzahl'],
+      ['minAge', 'Alter'],
       ['weight', 'Gewicht'],
       ['yearPublished', 'Jahr'],
     ] as [column, string][]).map((col) => {
