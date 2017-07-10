@@ -12,7 +12,7 @@ export default function Form(props: FormProps) {
             type="text"
             value={props.searchTerm}
             placeholder="Suchbegriff"
-            onChange={props.onSearchTermChange}
+            onChange={(event) => props.onSearchTermChange(event.target.value)}
           />
         </div>
         <div className="input-group fluid">
@@ -23,7 +23,7 @@ export default function Form(props: FormProps) {
               min={0}
               max={99}
               value={props.playerCount}
-              onChange={props.onPlayerCountChange}
+              onChange={(event) => props.onPlayerCountChange(Number(event.target.value))}
             />
           </label>
         </div>
@@ -51,7 +51,7 @@ export default function Form(props: FormProps) {
               min={0}
               max={99}
               value={props.minAge}
-              onChange={props.onMinAgeChange}
+              onChange={(event) => props.onMinAgeChange(Number(event.target.value))}
             />
           </label>
         </div>
@@ -62,10 +62,10 @@ export default function Form(props: FormProps) {
 }
 
 interface FormProps extends FormState {
-  onSearchTermChange: React.ChangeEventHandler<HTMLInputElement>;
-  onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSearchTermChange: (searchTerm: string) => void;
+  onPlayerCountChange: (playerCount: number) => void;
   onRatingChange: (rating: [number, number]) => void;
   onWeightChange: (weight: [number, number]) => void;
-  onMinAgeChange: React.ChangeEventHandler<HTMLInputElement>;
+  onMinAgeChange: (minAge: number) => void;
   onSourcesChange: (sourceId: number) => void;
 }

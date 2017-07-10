@@ -15,7 +15,7 @@ export default class App extends React.Component<AppProps, AppState> {
       playerCount: 0,
       rating: [1, 10],
       weight: [1, 5],
-      minAge: 0,
+      minAge: 99,
       sources: [
         ['Spielenacht 2016', 'spielenacht2016.json'],
         ['Stadtbibliothek', 'bibliothek.json'],
@@ -59,12 +59,12 @@ export default class App extends React.Component<AppProps, AppState> {
     });
   }
 
-  handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({searchTerm: event.target.value});
+  handleSearchTermChange = (searchTerm: string) => {
+    this.setState({searchTerm});
   }
 
-  handlePlayerCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({playerCount: Number(event.target.value)});
+  handlePlayerCountChange = (playerCount: number) => {
+    this.setState({playerCount});
   }
 
   handleRatingChange = (rating: [number, number]) => {
@@ -75,8 +75,8 @@ export default class App extends React.Component<AppProps, AppState> {
     this.setState({weight});
   }
 
-  handleMinAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({minAge: Number(event.target.value)});
+  handleMinAgeChange = (minAge: number) => {
+    this.setState({minAge});
   }
 
   handleSourcesChange = (sourceId: number) => {

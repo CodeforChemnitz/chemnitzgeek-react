@@ -42,8 +42,7 @@ export default class Table extends React.Component<TableProps, TableState> {
         && game.rating <= this.props.rating[1]
         && this.props.weight[0] <= game.weight
         && game.weight <= this.props.weight[1]
-        && (0 === this.props.minAge
-          || game.minAge <= this.props.minAge)
+        && game.minAge <= this.props.minAge
         && game.localName.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
       ))
       .sort((a, b) => {
