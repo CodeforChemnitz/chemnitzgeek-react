@@ -59,35 +59,22 @@ export default class App extends React.Component<AppProps, AppState> {
     });
   }
 
-  handleSearchTermChange = (searchTerm: string) => {
-    this.setState({searchTerm});
-  }
+  handleSearchTermChange = (searchTerm: string) => this.setState({searchTerm});
 
-  handlePlayerCountChange = (playerCount: number) => {
-    this.setState({playerCount});
-  }
+  handlePlayerCountChange = (playerCount: number) => this.setState({playerCount});
 
-  handleRatingChange = (rating: [number, number]) => {
-    this.setState({rating});
-  }
+  handleRatingChange = (rating: [number, number]) => this.setState({rating});
 
-  handleWeightChange = (weight: [number, number]) => {
-    this.setState({weight});
-  }
+  handleWeightChange = (weight: [number, number]) => this.setState({weight});
 
-  handleMinAgeChange = (minAge: number) => {
-    this.setState({minAge});
-  }
+  handleMinAgeChange = (minAge: number) => this.setState({minAge});
 
-  handleSourcesChange = (sourceId: number) => {
-    this.setState((prevState) => {
-      const i = prevState.sources.findIndex((item) => item.id === sourceId);
-      const sources = prevState.sources.slice();
-      sources[i].checked = !sources[i].checked;
-
-      return {sources};
-    });
-  }
+  handleSourcesChange = (sourceId: number) => this.setState((prevState) => {
+    const i = prevState.sources.findIndex((item) => item.id === sourceId);
+    const sources = prevState.sources.slice();
+    sources[i].checked = !sources[i].checked;
+    return {sources};
+  })
 }
 
 interface AppProps {
