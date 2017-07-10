@@ -69,12 +69,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   handleMinAgeChange = (minAge: number) => this.setState({minAge});
 
-  handleSourcesChange = (sourceId: number) => this.setState((prevState) => {
-    const i = prevState.sources.findIndex((item) => item.id === sourceId);
-    const sources = prevState.sources.slice();
-    sources[i].checked = !sources[i].checked;
-    return {sources};
-  })
+  handleSourcesChange = (sources: Item[]) => this.setState({sources});
 }
 
 interface AppProps {

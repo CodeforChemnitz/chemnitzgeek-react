@@ -3,7 +3,14 @@ import CheckBox, {Item} from './CheckBox';
 
 export default function CheckBoxGroup(props: CheckBoxGroupProps) {
   const items = props.items.map((item, index) => (
-    <CheckBox key={index} item={item} name={props.name} onChange={props.onChange}/>
+    <CheckBox
+      key={index}
+      item={item}
+      name={props.name}
+      onChange={(newItem: Item) => props.onChange(
+        props.items.slice(0, index).concat([newItem]).concat(props.items.slice(index + 1))
+      )}
+    />
   ));
 
   return (
@@ -21,5 +28,5 @@ export default function CheckBoxGroup(props: CheckBoxGroupProps) {
 interface CheckBoxGroupProps {
   items: Item[];
   name: string;
-  onChange: (sourceId: number) => void;
+  onChange: (item: Item[]) => void;
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import RangeInput from './RangeInput';
 import CheckBoxGroup from './CheckBoxGroup';
 import {FormState} from './App';
+import {Item} from './CheckBox';
 
 export default function Form(props: FormProps) {
   return (
@@ -67,5 +68,5 @@ interface FormProps extends FormState {
   onRatingChange: (rating: [number, number]) => void;
   onWeightChange: (weight: [number, number]) => void;
   onMinAgeChange: (minAge: number) => void;
-  onSourcesChange: (sourceId: number) => void;
+  onSourcesChange: (source: Item[]) => void;
 }

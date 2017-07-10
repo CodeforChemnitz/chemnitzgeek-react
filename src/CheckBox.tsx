@@ -8,7 +8,7 @@ export default function CheckBox(props: CheckBoxProps) {
       <input
         type="checkbox"
         checked={props.item.checked}
-        onChange={() => props.onChange(props.item.id)}
+        onChange={() => props.onChange({...props.item, checked: !props.item.checked})}
         id={id}
         tabIndex={0}
       />
@@ -20,7 +20,7 @@ export default function CheckBox(props: CheckBoxProps) {
 interface CheckBoxProps {
   item: Item;
   name: string;
-  onChange: (sourceId: number) => void;
+  onChange: (source: Item) => void;
 }
 
 export interface Item {
