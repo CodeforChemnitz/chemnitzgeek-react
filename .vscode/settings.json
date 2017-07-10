@@ -1,0 +1,24 @@
+{
+    "deploy": {
+        "packages": [
+            {
+                "files": ["build/**"],
+                "name": "ChemnitzGeek-react",
+                "targets": ["neptun"]
+            }
+        ],
+        "targets": [
+            {
+                "agent": "${SSH_AUTH_SOCK}",
+                "agentForward": true,
+                "dir": "public_html/chemnitzgeek-react",
+                "host": "neptun.g5r.eu",
+                "mappings": [{"source": "build", "target": ""}],
+                "name": "neptun",
+                "port": 22,
+                "type": "sftp",
+                "user": "deploy"
+            }
+        ]
+    }
+}
