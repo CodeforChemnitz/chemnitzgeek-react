@@ -32,10 +32,7 @@ export default class Table extends React.Component<TableProps, TableState> {
 
     const rowList = this.props.games
       .filter((game) => (
-        !Set(game.sources)
-          .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
-          .isEmpty()
-        && (0 === this.props.playerCount
+        (0 === this.props.playerCount
           || game.minPlayers <= this.props.playerCount
           &&  this.props.playerCount <= game.maxPlayers)
         && this.props.rating[0] <= game.rating
@@ -44,6 +41,9 @@ export default class Table extends React.Component<TableProps, TableState> {
         && game.weight <= this.props.weight[1]
         && game.minAge <= this.props.minAge
         && game.localName.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
+        && !Set(game.sources)
+          .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
+          .isEmpty()
       ))
       .sort((a, b) => {
         const valA = a[this.state.column];
