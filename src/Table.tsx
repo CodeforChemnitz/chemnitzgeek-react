@@ -3,7 +3,7 @@ import TableRow /*, {Game}*/ from './TableRow';
 import {AppState} from './App';
 import {Set} from 'immutable';
 
-export default class Table extends React.Component<TableProps, TableState> {
+export default class Table extends React.PureComponent<TableProps, TableState> {
   constructor(props: TableProps) {
     super(props);
     this.state = {

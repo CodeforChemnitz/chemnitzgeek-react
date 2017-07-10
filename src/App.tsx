@@ -5,7 +5,7 @@ import {Item} from './CheckBox';
 import {Game} from './TableRow';
 import {Set} from 'immutable';
 
-export default class App extends React.Component<AppProps, AppState> {
+export default class App extends React.PureComponent<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     const baseUrl = 'https://rawcdn.githack.com/CodeforChemnitz/ChemnitzGeek/master/html/gameData.';
