@@ -67,20 +67,12 @@ export default class App extends React.Component<AppProps, AppState> {
     this.setState({playerCount: Number(event.target.value)});
   }
 
-  handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.name === 'max') {
-      this.setState({rating: [this.state.rating[0], Number(event.target.value)]});
-    } else {
-      this.setState({rating: [Number(event.target.value), this.state.rating[1]]});
-    }
+  handleRatingChange = (rating: [number, number]) => {
+    this.setState({rating});
   }
 
-  handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.name === 'max') {
-      this.setState({weight: [this.state.weight[0], Number(event.target.value)]});
-    } else {
-      this.setState({weight: [Number(event.target.value), this.state.weight[1]]});
-    }
+  handleWeightChange = (weight: [number, number]) => {
+    this.setState({weight});
   }
 
   handleMinAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {

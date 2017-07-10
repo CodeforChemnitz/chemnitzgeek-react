@@ -3,7 +3,7 @@ import RangeInput from './RangeInput';
 import CheckBoxGroup from './CheckBoxGroup';
 import {FormState} from './App';
 
-export default function Form(props: InputProps) {
+export default function Form(props: FormProps) {
   return (
     <div className="col-sm-3">
       <form>
@@ -61,11 +61,11 @@ export default function Form(props: InputProps) {
   );
 }
 
-interface InputProps extends FormState {
+interface FormProps extends FormState {
   onSearchTermChange: React.ChangeEventHandler<HTMLInputElement>;
   onPlayerCountChange: React.ChangeEventHandler<HTMLInputElement>;
-  onRatingChange: React.ChangeEventHandler<HTMLInputElement>;
-  onWeightChange: React.ChangeEventHandler<HTMLInputElement>;
+  onRatingChange: (rating: [number, number]) => void;
+  onWeightChange: (weight: [number, number]) => void;
   onMinAgeChange: React.ChangeEventHandler<HTMLInputElement>;
   onSourcesChange: (sourceId: number) => void;
 }
