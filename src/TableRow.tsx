@@ -5,12 +5,16 @@ export default function TableRow(props: TableRowProps) {
   const playerCount = (props.minPlayers === props.maxPlayers)
     ? props.minPlayers
     : `${props.minPlayers} – ${props.maxPlayers}`;
-  const rating = (props.rating - 1) / 9 * 1000;
-  const weight = (props.weight - 1) / 4 * 1000;
+  const rating = props.rating / 10 * 1000;
+  const weight = props.weight / 5 * 1000;
+  const style = {textDecoration: 'none', color: '#212121'};
+  const url = 'https://boardgamegeek.com/boardgame/' + props.bggID;
 
   return (
     <tr>
-      <td data-label="Name">{props.localName}</td>
+      <td data-label="Name">
+        <a href={url} target="_blank" style={style}>{props.localName}</a>
+      </td>
       <td data-label="Bewertung">
         <progress value={rating} title={String(props.rating)} max={1000}/>
       </td>
