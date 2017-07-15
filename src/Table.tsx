@@ -1,7 +1,7 @@
-import * as React from 'react';
-import TableRow /*, {Game}*/ from './TableRow';
-import {AppState} from './App';
 import {Set} from 'immutable';
+import * as React from 'react';
+import {AppState} from './App';
+import TableRow /*, {Game}*/ from './TableRow';
 
 export default class Table extends React.PureComponent<TableProps, TableState> {
   constructor(props: TableProps) {
@@ -27,6 +27,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       }
       const ch = this.handleSortChange(col[0]);
       const style = {textDecoration: 'none', color: '#212121'};
+
       return <th><a href="#" onClick={ch} style={style}>{col[1]}{symbol}</a></th>;
     });
 
@@ -54,6 +55,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         } else {
           sortInfo = Math.sign(Number(valA) - Number(valB));
         }
+
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
       .map((game, index) => <TableRow key={index} {...game}/>);
@@ -73,11 +75,11 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
     );
   }
 
-  handleSortChange = (column: column) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+  handleSortChange = (newColumn: column) => (event: React.MouseEvent<HTMLAnchorElement>) => {
     this.setState((prevState) => (
-      (prevState.column === column)
+      (prevState.column === newColumn)
         ? {ascending: !prevState.ascending}
-        : {column, ascending: true}
+        : {newColumn, ascending: true}
     ));
   }
 }

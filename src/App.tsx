@@ -1,9 +1,9 @@
+import {Set} from 'immutable';
 import * as React from 'react';
+import {Item} from './CheckBox';
 import Form from './Form';
 import Table from './Table';
-import {Item} from './CheckBox';
 import {Game} from './TableRow';
-import {Set} from 'immutable';
 
 export default class App extends React.PureComponent<AppProps, AppState> {
   constructor(props: AppProps) {

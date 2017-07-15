@@ -1,8 +1,8 @@
 import * as React from 'react';
-import RangeInput from './RangeInput';
-import CheckBoxGroup from './CheckBoxGroup';
 import {FormState} from './App';
 import {Item} from './CheckBox';
+import CheckBoxGroup from './CheckBoxGroup';
+import RangeInput from './RangeInput';
 
 export default function Form(props: FormProps) {
   return (

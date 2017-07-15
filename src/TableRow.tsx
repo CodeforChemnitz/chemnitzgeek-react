@@ -1,5 +1,5 @@
-import * as React from 'react';
 import {Set} from 'immutable';
+import * as React from 'react';
 
 export default function TableRow(props: TableRowProps) {
   const playerCount = (props.minPlayers === props.maxPlayers)

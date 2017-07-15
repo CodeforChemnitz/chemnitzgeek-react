@@ -20,5 +20,6 @@
                 "user": "deploy"
             }
         ]
-    }
+    },
+    "prettier.tabWidth": 2
 }

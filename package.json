@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "immutable": "^3.8.1",
+    "mini.css": "^2.3.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
     "@types/jest": "^20.0.2",
     "@types/node": "^8.0.7",
     "@types/react": "^15.0.34",
     "@types/react-dom": "^15.5.1",
-    "immutable": "^3.8.1",
-    "mini.css": "^2.3.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react-scripts-ts": "^2.3.2",
+    "tslint": "^5.5.0",
     "typescript": "^2.4.1"
-  },
-  "devDependencies": {
-    "react-scripts-ts": "2.3.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
