@@ -46,16 +46,13 @@ export default class App extends React.PureComponent<AppProps, AppState> {
   }
 
   componentDidMount() {
-    this.state.sources.forEach((source) => {
-      fetch(source.url)
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState((prevState) => ({
-          games: prevState.games.concat(
-            json.map((i: Game) => ({...i, sources: Set.of(source.id)}))
-          ),
-        }));
-      });
+    this.state.sources.forEach(async (source) => {
+      const data = await fetch(source.url).then((response) => response.json());
+      this.setState((prevState) => ({
+        games: prevState.games.concat(
+          data.map((i: Game) => ({...i, sources: Set.of(source.id)}))
+        ),
+      }));
     });
   }
 
