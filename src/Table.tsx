@@ -20,7 +20,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       ['minAge', 'Alter'],
       ['weight', 'Gewicht'],
       ['yearPublished', 'Jahr'],
-    ] as [column, string][]).map((col) => {
+    ] as [column, string][]).map((col, index) => {
       let symbol = '';
       if (col[0] === this.state.column) {
         symbol = (this.state.ascending) ? '▲' : '▼';
@@ -28,7 +28,11 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       const ch = this.handleSortChange(col[0]);
       const style = {textDecoration: 'none', color: '#212121'};
 
-      return <th><a href="#" onClick={ch} style={style}>{col[1]}{symbol}</a></th>;
+      return (
+      <th key={index}>
+        <a href="#" onClick={ch} style={style}>{col[1]}{symbol}</a>
+      </th>
+      );
     });
 
     const rowList = this.props.games
