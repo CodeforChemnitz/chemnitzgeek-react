@@ -56,7 +56,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
           if (i === -1) {
             games.push({...game, sources: Set.of(source.id)});
           } else {
-            games[i] = {...games[i], sources: Set(games[i].sources.add(source.id).sort())};
+            games[i].sources = games[i].sources.add(source.id).sort().toSet();
           }
         });
       });

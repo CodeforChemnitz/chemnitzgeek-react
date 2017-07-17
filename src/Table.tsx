@@ -20,6 +20,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       ['minAge', 'Alter'],
       ['weight', 'Gewicht'],
       ['yearPublished', 'Jahr'],
+      ['sources', 'Quellen'],
     ] as [column, string][]).map((col, index) => {
       let symbol = '';
       if (col[0] === this.state.column) {
@@ -56,10 +57,11 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         let sortInfo: number;
         if (this.state.column === 'localName') {
           sortInfo = String(valA).localeCompare(String(valB));
+        } else if (this.state.column === 'sources') {
+          sortInfo = (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
         } else {
           sortInfo = Math.sign(Number(valA) - Number(valB));
         }
-
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
       .map((game) => <TableRow key={game.bggID} {...game}/>);
@@ -67,12 +69,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
     return (
       <div className="col-sm-9">
         <table className="striped">
-          <thead>
-            <tr>
-              {columnList}
-              <th>Quelle</th>
-            </tr>
-          </thead>
+          <thead><tr>{columnList}</tr></thead>
           <tbody>{rowList}</tbody>
         </table>
       </div>
@@ -101,4 +98,5 @@ type column = 'localName'
     | 'minAge'
     | 'minPlayers'
     | 'weight'
-    | 'yearPublished';
+    | 'yearPublished'
+    | 'sources';
