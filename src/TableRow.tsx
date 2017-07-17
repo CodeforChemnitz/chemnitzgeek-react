@@ -32,7 +32,11 @@ export default function TableRow(props: TableRowProps) {
 interface TableRowProps extends Game {
 }
 
-export interface Game {
+export interface Game extends GameFromSource {
+  sources: Set<number>;
+}
+
+export interface GameFromSource {
   bggID: number;
   name: string;
   yearPublished: number;
@@ -42,6 +46,4 @@ export interface Game {
   rating: number;
   weight: number;
   localName: string;
-
-  sources: Set<number>;
 }

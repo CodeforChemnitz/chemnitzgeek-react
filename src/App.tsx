@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Item} from './CheckBox';
 import Form from './Form';
 import Table from './Table';
-import {Game} from './TableRow';
+import {Game, GameFromSource} from './TableRow';
 
 export default class App extends React.PureComponent<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -45,15 +45,29 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     );
   }
 
-  componentDidMount() {
-    this.state.sources.forEach(async (source) => {
-      const data = await fetch(source.url).then((response) => response.json());
-      this.setState((prevState) => ({
-        games: prevState.games.concat(
-          data.map((i: Game) => ({...i, sources: Set.of(source.id)}))
-        ),
-      }));
-    });
+  async componentDidMount() {
+    try {
+      const games: Game[] = [];
+      const sources = this.state.sources.map(async (source) => {
+        const response = await fetch(source.url);
+        const data: GameFromSource[] = await response.json();
+        data.forEach((game) => {
+          const i = games.findIndex((elem) => elem.bggID === game.bggID);
+          if (i === -1) {
+            games.push({...game, sources: Set.of(source.id)});
+          } else {
+            games[i] = {...games[i], sources: Set(games[i].sources.add(source.id).sort())};
+          }
+        });
+      });
+      for (const gamesFromSource of sources) {
+        await gamesFromSource;
+      }
+      this.setState({games});
+    } catch (error) {
+      // tslint:disable-next-line:no-console
+      console.error(error);
+    }
   }
 
   handleSearchTermChange = (searchTerm: string) => this.setState({searchTerm});

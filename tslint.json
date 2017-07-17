@@ -45,7 +45,6 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "newline-before-return": true,
         "ordered-imports": [
             true
         ],

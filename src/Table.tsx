@@ -58,7 +58,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
 
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
-      .map((game, index) => <TableRow key={index} {...game}/>);
+      .map((game) => <TableRow key={game.bggID} {...game}/>);
 
     return (
       <div className="col-sm-9">
