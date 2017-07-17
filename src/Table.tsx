@@ -57,10 +57,8 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         let sortInfo: number;
         if (this.state.column === 'localName') {
           sortInfo = String(valA).localeCompare(String(valB));
-        } else if (this.state.column === 'sources') {
-          sortInfo = (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
         } else {
-          sortInfo = Math.sign(Number(valA) - Number(valB));
+          sortInfo = (valA > valB) ? 1 : (valA < valB) ? -1 : 0;
         }
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
@@ -80,7 +78,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
     this.setState((prevState) => (
       (prevState.column === newColumn)
         ? {ascending: !prevState.ascending}
-        : {newColumn, ascending: true}
+        : {column: newColumn, ascending: true}
     ));
   }
 }
