@@ -10,7 +10,7 @@ export default function TableRow(props: TableRowProps) {
   const weight = props.weight / 5 * 1000;
   const style = {textDecoration: 'none', color: '#212121'};
   const url = 'https://boardgamegeek.com/boardgame/' + props.bggID;
-  const colorMap = Map(props.sources.map((elem) => [elem.id, elem.bgColor]));
+  const sourceInfo: Map<sourceID, Item> = Map(props.sources.map((source) => ([source.id, source])));
   const commonSourcesStyle = {
     color: '#eee',
     fontWeight: 'bold',
@@ -22,9 +22,12 @@ export default function TableRow(props: TableRowProps) {
     verticalAlign: 'middle',
     fontFamily: 'monospace',
   };
-  const sources = props.sourceList.map((elem: sourceID) => (
-    <span style={Object.assign({backgroundColor: colorMap.get(elem)}, commonSourcesStyle)}>
-      {elem}
+  const sources = props.sourceList.map((sID: sourceID) => (
+    <span
+      title={sourceInfo.get(sID).name}
+      style={Object.assign({backgroundColor: sourceInfo.get(sID).bgColor}, commonSourcesStyle)}
+    >
+      {sID}
     </span>
   ));
 
