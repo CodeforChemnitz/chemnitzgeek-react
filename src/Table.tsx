@@ -1,7 +1,7 @@
 import {Set} from 'immutable';
 import * as React from 'react';
 import {AppState} from './App';
-import TableRow /*, {Game}*/ from './TableRow';
+import TableRow from './TableRow';
 
 export default class Table extends React.PureComponent<TableProps, TableState> {
   constructor(props: TableProps) {
@@ -47,7 +47,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         && game.weight <= this.props.weight[1]
         && game.minAge <= this.props.minAge
         && game.localName.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
-        && !Set(game.sources)
+        && !Set(game.sourceList)
           .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
           .isEmpty()
       ))
@@ -62,7 +62,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         }
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
-      .map((game) => <TableRow key={game.bggID} {...game}/>);
+      .map((game) => <TableRow key={game.bggID} {...game} sources={this.props.sources}/>);
 
     return (
       <div className="col-sm-9">

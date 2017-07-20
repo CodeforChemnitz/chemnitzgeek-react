@@ -1,5 +1,6 @@
-import {Set} from 'immutable';
+import {Map, Set} from 'immutable';
 import * as React from 'react';
+import {Item} from './CheckBox';
 
 export default function TableRow(props: TableRowProps) {
   const playerCount = (props.minPlayers === props.maxPlayers)
@@ -9,6 +10,23 @@ export default function TableRow(props: TableRowProps) {
   const weight = props.weight / 5 * 1000;
   const style = {textDecoration: 'none', color: '#212121'};
   const url = 'https://boardgamegeek.com/boardgame/' + props.bggID;
+  const colorMap = Map(props.sources.map((elem) => [elem.id, elem.bgColor]));
+  const commonSourcesStyle = {
+    color: '#eee',
+    fontWeight: 'bold',
+    border: '1px solid black',
+    borderRadius: '3px',
+    fontSize: '85%',
+    padding: '2px',
+    margin: '0px 1px',
+    verticalAlign: 'middle',
+    fontFamily: 'monospace',
+  };
+  const sources = props.sourceList.map((elem: sourceID) => (
+    <span style={Object.assign({backgroundColor: colorMap.get(elem)}, commonSourcesStyle)}>
+      {elem}
+    </span>
+  ));
 
   return (
     <tr>
@@ -24,17 +42,20 @@ export default function TableRow(props: TableRowProps) {
         <progress value={weight} title={String(props.weight)} max={1000} className="secondary"/>
       </td>
       <td data-label="Jahr">{props.yearPublished}</td>
-      <td data-label="Quelle">{props.sources.join(', ')}</td>
+      <td data-label="Quelle">{sources}</td>
     </tr>
   );
 }
 
 interface TableRowProps extends Game {
+  sources: Item[];
 }
 
 export interface Game extends GameFromSource {
-  sources: Set<number>;
+  sourceList: Set<sourceID>;
 }
+
+export type sourceID = 'SN16' | 'Bibl' | 'StuWe' | 'WüTü' | 'Kffz';
 
 export interface GameFromSource {
   bggID: number;

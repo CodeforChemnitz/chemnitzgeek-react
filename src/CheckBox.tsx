@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {sourceID} from './TableRow';
 
 export default function CheckBox(props: CheckBoxProps) {
   const id = 'checkbox-' + props.name + props.item.id;
@@ -24,8 +25,9 @@ interface CheckBoxProps {
 }
 
 export interface Item {
-  id: number;
+  id: sourceID;
   name: string;
   checked: boolean;
   url: string;
+  bgColor: string;
 }

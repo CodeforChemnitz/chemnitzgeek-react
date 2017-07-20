@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Item} from './CheckBox';
 import Form from './Form';
 import Table from './Table';
-import {Game, GameFromSource} from './TableRow';
+import {Game, GameFromSource, sourceID} from './TableRow';
 
 export default class App extends React.PureComponent<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -16,13 +16,15 @@ export default class App extends React.PureComponent<AppProps, AppState> {
       rating: [1, 10],
       weight: [1, 5],
       minAge: 99,
-      sources: [
-        ['Spielenacht 2016', 'spielenacht2016.json'],
-        ['Stadtbibliothek', 'bibliothek.json'],
-        ['Studentenwerk', 'swcz.json'],
-        ['Würfeltürmer', 'tuermer.json'],
-        ['Kaffeesatz', 'kaffeesatz.json'],
-      ].map((item, index) => ({id: index, name: item[0], checked: true, url: baseUrl + item[1]})),
+      sources: ([
+        ['Spielenacht 2016', 'SN16', '#336', 'spielenacht2016.json'],
+        ['Stadtbibliothek', 'Bibl', '#366', 'bibliothek.json'],
+        ['Studentenwerk', 'StuWe', '#363', 'swcz.json'],
+        ['Würfeltürmer', 'WüTü', '#663', 'tuermer.json'],
+        ['Kaffeesatz', 'Kffz', '#633', 'kaffeesatz.json'],
+      ] as [string, sourceID, string][]).map((item) => (
+        {id: item[1], name: item[0], checked: true, url: baseUrl + item[3], bgColor: item[2]}
+      )),
     };
   }
 
@@ -54,9 +56,9 @@ export default class App extends React.PureComponent<AppProps, AppState> {
         data.forEach((game) => {
           const i = games.findIndex((elem) => elem.bggID === game.bggID);
           if (i === -1) {
-            games.push({...game, sources: Set.of(source.id)});
+            games.push({...game, sourceList: Set.of(source.id)});
           } else {
-            games[i].sources = games[i].sources.add(source.id).sort().toSet();
+            games[i].sourceList = games[i].sourceList.add(source.id).sort().toSet();
           }
         });
       });
