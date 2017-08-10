@@ -13,6 +13,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
   }
 
   render() {
+    const props = this.props;
     const columnList = ([
       ['localName', 'Name'],
       ['rating', 'Bewertung'],
@@ -36,19 +37,19 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       );
     });
 
-    const rowList = this.props.games
+    const rowList = props.games
       .filter((game) => (
-        (0 === this.props.playerCount
-          || game.minPlayers <= this.props.playerCount
-          &&  this.props.playerCount <= game.maxPlayers)
-        && this.props.rating[0] <= game.rating
-        && game.rating <= this.props.rating[1]
-        && this.props.weight[0] <= game.weight
-        && game.weight <= this.props.weight[1]
-        && game.minAge <= this.props.minAge
-        && game.localName.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
+        (0 === props.playerCount
+          || game.minPlayers <= props.playerCount
+          &&  props.playerCount <= game.maxPlayers)
+        && props.rating[0] <= game.rating
+        && game.rating <= props.rating[1]
+        && props.weight[0] <= game.weight
+        && game.weight <= props.weight[1]
+        && game.minAge <= props.minAge
+        && game.localName.toLocaleLowerCase().includes(props.searchTerm.toLocaleLowerCase())
         && !Set(game.sourceList)
-          .intersect(this.props.sources.filter((item) => item.checked).map((item) => item.id))
+          .intersect(props.sources.filter((item) => item.checked).map((item) => item.id))
           .isEmpty()
       ))
       .sort((a, b) => {
@@ -62,7 +63,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
         }
         return (this.state.ascending) ? sortInfo : -sortInfo;
       })
-      .map((game) => <TableRow key={game.bggID} {...game} sources={this.props.sources}/>);
+      .map((game) => <TableRow key={game.bggID} {...game} sources={props.sources}/>);
 
     return (
       <div className="col-sm-9">
