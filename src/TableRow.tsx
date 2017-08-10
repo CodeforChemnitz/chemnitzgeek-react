@@ -24,6 +24,7 @@ export default function TableRow(props: TableRowProps) {
   };
   const sources = props.sourceList.map((sID: sourceID) => (
     <span
+      key={sID}
       title={sourceInfo.get(sID).name}
       style={Object.assign({backgroundColor: sourceInfo.get(sID).bgColor}, commonSourcesStyle)}
     >
