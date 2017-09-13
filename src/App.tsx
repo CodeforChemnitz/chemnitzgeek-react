@@ -11,6 +11,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     const baseUrl = 'https://rawcdn.githack.com/CodeforChemnitz/ChemnitzGeek/master/html/gameData.';
     this.state = {
       games: [],
+      hasLoaded: false,
       searchTerm: '',
       playerCount: 0,
       rating: [1, 10],
@@ -65,7 +66,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
       for (const gamesFromSource of sources) {
         await gamesFromSource;
       }
-      this.setState({games});
+      this.setState({games, hasLoaded: true});
     } catch (error) {
       // tslint:disable-next-line:no-console
       console.error(error);
@@ -90,6 +91,7 @@ interface AppProps {
 
 export interface AppState extends FormState {
   games: Game[];
+  hasLoaded: boolean;
 }
 
 export interface FormState {

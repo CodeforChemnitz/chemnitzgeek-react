@@ -14,6 +14,16 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
 
   render() {
     const props = this.props;
+    if (!props.hasLoaded) {
+      return (
+        <div className="col-sm-8">
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div className="spinner-donut large" style={{margin: '45vh'}} />
+          </div>
+        </div>
+      );
+    }
+
     const columnList = ([
       ['localName', 'Name'],
       ['rating', 'Bewertung'],
@@ -66,7 +76,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       .map((game) => <TableRow key={game.bggID} {...game} sources={props.sources}/>);
 
     return (
-      <div className="col-sm-9">
+      <div className="col-sm-8">
         <table className="striped">
           <thead><tr>{columnList}</tr></thead>
           <tbody>{rowList}</tbody>

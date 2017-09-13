@@ -8,7 +8,7 @@ export default class Form extends React.PureComponent<FormProps, {}> {
   render() {
     const props = this.props;
     return (
-      <div className="col-sm-3">
+      <div className="col-sm-4">
         <form>
           <div className="input-group fluid">
             <input
