@@ -66,7 +66,7 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
       .map((game) => <TableRow key={game.bggID} {...game} sources={props.sources}/>);
 
     return (
-      <div className="col-sm-8">
+      <div className="col-sm-12 col-md-8">
         <table className="striped">
           <thead><tr>{columnList}</tr></thead>
           <tbody>{rowList}</tbody>
