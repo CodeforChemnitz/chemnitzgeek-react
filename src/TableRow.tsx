@@ -39,7 +39,7 @@ export default class TableRow extends React.PureComponent<TableRowProps, {}> {
     return (
       <tr>
         <td data-label="Name">
-          <a href={url} target="_blank" style={style}>{props.localName}</a>
+          <a href={url} target="_blank" rel="noopener" style={style}>{props.localName}</a>
         </td>
         <td data-label="Bewertung">
           <progress value={rating} title={String(props.rating)} max={1000}/>
