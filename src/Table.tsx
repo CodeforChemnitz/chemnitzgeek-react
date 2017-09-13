@@ -14,16 +14,6 @@ export default class Table extends React.PureComponent<TableProps, TableState> {
 
   render() {
     const props = this.props;
-    if (!props.hasLoaded) {
-      return (
-        <div className="col-sm-8">
-          <div style={{display: 'flex', justifyContent: 'center'}}>
-            <div className="spinner-donut large" style={{margin: '45vh'}} />
-          </div>
-        </div>
-      );
-    }
-
     const columnList = ([
       ['localName', 'Name'],
       ['rating', 'Bewertung'],

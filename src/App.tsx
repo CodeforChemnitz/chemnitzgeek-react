@@ -30,7 +30,17 @@ export default class App extends React.PureComponent<AppProps, AppState> {
   }
 
   render() {
-    const {games, ...formState} = this.state;
+    const {games, hasLoaded, ...formState} = this.state;
+
+    if (!hasLoaded) {
+      return (
+        <div className="row">
+          <div className="col-sm-12" style={{display: 'flex', justifyContent: 'center'}}>
+            <div className="spinner-donut large" style={{margin: '45vh'}} />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="row">
