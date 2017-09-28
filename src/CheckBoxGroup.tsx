@@ -16,14 +16,10 @@ export default class CheckBoxGroup extends React.PureComponent<CheckBoxGroupProp
     ));
 
     return (
-      <div className="col-sm-12">
-        <fieldset>
-          <div>
-            <legend>{props.name}</legend>
-            {items}
-          </div>
-        </fieldset>
-      </div>
+      <fieldset>
+        <legend>{props.name}</legend>
+        {items}
+      </fieldset>
     );
   }
 }

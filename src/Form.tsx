@@ -8,59 +8,57 @@ export default class Form extends React.PureComponent<FormProps, {}> {
   render() {
     const props = this.props;
     return (
-      <div className="col-sm-12 col-md-4">
-        <form>
-          <div className="input-group fluid">
+      <form>
+        <div className="input-group fluid">
+          <input
+            type="text"
+            value={props.searchTerm}
+            placeholder="Suchbegriff"
+            onChange={(event) => props.onSearchTermChange(event.target.value)}
+          />
+        </div>
+        <div className="input-group fluid">
+          <label>
+            Spieleranzahl
             <input
-              type="text"
-              value={props.searchTerm}
-              placeholder="Suchbegriff"
-              onChange={(event) => props.onSearchTermChange(event.target.value)}
+              type="number"
+              min={0}
+              max={99}
+              value={props.playerCount}
+              onChange={(event) => props.onPlayerCountChange(Number(event.target.value))}
             />
-          </div>
-          <div className="input-group fluid">
-            <label>
-              Spieleranzahl
-              <input
-                type="number"
-                min={0}
-                max={99}
-                value={props.playerCount}
-                onChange={(event) => props.onPlayerCountChange(Number(event.target.value))}
-              />
-            </label>
-          </div>
-          <RangeInput
-            min={1}
-            max={10}
-            value={props.rating}
-            step={1}
-            name="Bewertung"
-            onChange={props.onRatingChange}
-          />
-          <RangeInput
-            min={1}
-            max={5}
-            value={props.weight}
-            step={0.5}
-            name="Gewicht"
-            onChange={props.onWeightChange}
-          />
-          <div className="input-group fluid">
-            <label>
-              Minimales Alter
-              <input
-                type="number"
-                min={0}
-                max={99}
-                value={props.minAge}
-                onChange={(event) => props.onMinAgeChange(Number(event.target.value))}
-              />
-            </label>
-          </div>
-          <CheckBoxGroup items={props.sources} name="Quelle" onChange={props.onSourcesChange}/>
-        </form>
-      </div>
+          </label>
+        </div>
+        <RangeInput
+          min={1}
+          max={10}
+          value={props.rating}
+          step={1}
+          name="Bewertung"
+          onChange={props.onRatingChange}
+        />
+        <RangeInput
+          min={1}
+          max={5}
+          value={props.weight}
+          step={0.5}
+          name="Gewicht"
+          onChange={props.onWeightChange}
+        />
+        <div className="input-group fluid">
+          <label>
+            Minimales Alter
+            <input
+              type="number"
+              min={0}
+              max={99}
+              value={props.minAge}
+              onChange={(event) => props.onMinAgeChange(Number(event.target.value))}
+            />
+          </label>
+        </div>
+        <CheckBoxGroup items={props.sources} name="Quelle" onChange={props.onSourcesChange}/>
+      </form>
     );
   }
 }

@@ -44,16 +44,20 @@ export default class App extends React.PureComponent<AppProps, AppState> {
 
     return (
       <div className="row">
-        <Form
-          {...formState}
-          onSearchTermChange={this.handleSearchTermChange}
-          onPlayerCountChange={this.handlePlayerCountChange}
-          onRatingChange={this.handleRatingChange}
-          onWeightChange={this.handleWeightChange}
-          onMinAgeChange={this.handleMinAgeChange}
-          onSourcesChange={this.handleSourcesChange}
-        />
-        <Table {...this.state}/>
+        <div className="col-sm-12 col-md-4">
+          <Form
+            {...formState}
+            onSearchTermChange={this.handleSearchTermChange}
+            onPlayerCountChange={this.handlePlayerCountChange}
+            onRatingChange={this.handleRatingChange}
+            onWeightChange={this.handleWeightChange}
+            onMinAgeChange={this.handleMinAgeChange}
+            onSourcesChange={this.handleSourcesChange}
+          />
+        </div>
+        <div className="col-sm-12 col-md-8">
+          <Table {...this.state}/>
+        </div>
       </div>
     );
   }
